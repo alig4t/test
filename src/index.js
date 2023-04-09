@@ -1,13 +1,18 @@
 import React from 'react';
 import ReactDOM from 'react-dom/client';
-import './index.css';
 import App from './App';
+import { ThemeProvider } from 'react-bootstrap';
 import reportWebVitals from './reportWebVitals';
+import 'bootstrap/dist/css/bootstrap.min.css'
+import './index.css';
+// import 'bootstrap/dist/css/bootstrap.rtl.min.css'
 
 const root = ReactDOM.createRoot(document.getElementById('root'));
 root.render(
   <React.StrictMode>
-    <App />
+    <ThemeProvider dir="rtl">
+      <App />
+    </ThemeProvider>
   </React.StrictMode>
 );
 

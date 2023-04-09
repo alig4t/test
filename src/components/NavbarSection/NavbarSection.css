@@ -1,0 +1,66 @@
+.navbar-toggler-icon{
+    content: "sss";
+}
+.bar-icon-container{
+    /* border: 1px solid #fff !important; */
+    font-size: 30px;
+    padding: 0 6px;
+    margin-left: 5px;
+}
+
+@media (min-width: 992px) { 
+    .navbar-nav a{
+        color: #fff;
+        transition: all ease 0.2s;
+    }
+    .navbar-nav a:hover{
+        color: rgb(230, 219, 205);
+    }
+ }
+
+/* 
+.navbar{
+    width: 100%;
+    height: 56px;
+    color: #fff;
+    position: fixed;
+    top: 0;
+    left: 0;
+    background-color: rgb(109, 43, 171);
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    z-index: 50;
+    box-sizing: border-box;
+    padding: 0 15px;
+}
+
+.navbar ul{
+    margin: 0;
+    padding: 0;
+    list-style: none;
+    display: flex;
+    align-items: center;
+    height: 100%;
+}
+.navbar ul li{
+    margin: 0;
+    /* padding: 16px; */
+    /* height: 100%;
+    display: flex;
+    align-items: center;
+    box-sizing: border-box;
+} */
+
+/* .navbar ul li a{
+    color: #fff;
+    text-decoration: none;
+    height: 100%;
+    padding: 16px 10px;
+    box-sizing: border-box;
+    display: block;
+}
+
+.navbar ul li a:hover{
+    background-color:#bc9ac2 ;
+} */ 
