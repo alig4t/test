@@ -1,30 +1,24 @@
-import React, { useContext, useState } from 'react';
+import React, { useContext, useEffect, useState } from 'react';
 import { CartContext } from '../../context/cartContext';
 import ModalUI from '../UI/Modal/ModalUI';
-
+import PlaceHolderUI from '../UI/PlaceHolderUI/PlaceHolderUI';
 import './ProductCards.css'
 
 const ProductCards = (props) => {
 
-
     /*********************  Cart Data  *********************/
-
     const [cartItems, setCartItems] = useContext(CartContext)
 
 
     /*********************  Modal Product  *********************/
-
     const [showModalProduct, setShowModalProduct] = useState(false)
     const [modalDataProduct, setModalDataProduct] = useState({ imgPath: '', });
-
     const productModalHandler = (item) => {
         setModalDataProduct(item);
         setShowModalProduct(true);
     }
 
-
     /*********************  add Product to Cart Functions  *********************/
-
     const checkExistProduct = (cartArray, cartItem) => {
         for (let i = 0; i < cartArray.length; i++) {
             if (cartArray[i].id === cartArray.id) {
@@ -44,7 +38,6 @@ const ProductCards = (props) => {
         }
         if (indexProductDuplicated > -1) {
             let updatedItem = newBasket[indexProductDuplicated]
-            console.log(updatedItem);
             updatedItem.qty += 1;
             newBasket[indexProductDuplicated] = updatedItem
             setCartItems(newBasket);
@@ -55,7 +48,7 @@ const ProductCards = (props) => {
         }
     }
 
-    
+
     /********************* Sort Product by sort Value in Json  *********************/
 
     const sortJsonArray = (jsonArray) => {
@@ -75,9 +68,9 @@ const ProductCards = (props) => {
 
     const sortedProducts = sortJsonArray(props.productList);
 
-        
-    
-    /********************* Produce Product Elements   *********************/
+
+
+    /********************* Product List Elements   *********************/
 
     let sort = 0;
     let nextKey = 1;
@@ -113,21 +106,32 @@ const ProductCards = (props) => {
         )
     })
 
+    const loadingProducts = (
+        <>
+            <PlaceHolderUI />
+            <PlaceHolderUI />
+            <PlaceHolderUI />
+            <PlaceHolderUI />
+            <PlaceHolderUI />
+            <PlaceHolderUI />
+            <PlaceHolderUI />
+            <PlaceHolderUI />
+        </>
+    )
 
     return (
         <>
             <section id="product-box">
                 <div className="container">
                     <div className="row p-lg-3">
+                        {
+                            (props.productList.length == 0) ? loadingProducts : productArray
 
-                        {productArray}
-
+                        }
                         <ModalUI show={showModalProduct} modalType="food" item={modalDataProduct} handleClose={() => setShowModalProduct(false)} />
-
                     </div>
                 </div>
             </section>
-            {/* <span className="custom-alert">با موفقیت به سبد خرید افزوده شد..</span> */}
         </>
     )
 }

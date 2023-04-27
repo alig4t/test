@@ -1,29 +1,109 @@
-import React, { useState } from 'react';
+import React, { useState, useRef, useEffect } from 'react';
 import Button from 'react-bootstrap/Button';
 import Form from 'react-bootstrap/Form';
-import Modal from 'react-bootstrap/Modal';
+import "./LoginForm.css"
 
 function LoginForm() {
 
-  const [show, setShow] = useState(false);
-  const handleClose = () => setShow(false);
-  const handleShow = () => setShow(true);
+  const [phoneInput, setPhoneInput] = useState('');
+  const [smsCode, setSmsCode] = useState();
+  const [verifyInput,setVerifyInput] = useState('');
 
-  return (
-    <>
-      <Button variant="primary" onClick={handleShow}>
-        Launch demo modal
-      </Button>
+  const phoneRef = useRef()
+  // const verifyRef = useRef()
+  const msgFormRef = useRef()
+  const msgValidRef = useRef()
 
-      <Modal show={show} onHide={handleClose}>
-          
-        <Modal.Body>
-          <Form>
-            ssssss
-          </Form>
-        </Modal.Body>
-      </Modal>
-    </>
+  useEffect(() => {
+    phoneRef.current.focus()
+    // verifyRef.current.focus();
+  }, )
+
+  const loginHandler = (event) => {
+    event.preventDefault()
+    console.log(phoneInput);
+    console.log(check_phone(phoneInput));
+    if (check_phone(phoneInput)) {
+      //....
+      //.....
+      let randomCode = generate(6);
+      console.log(randomCode);
+      msgFormRef.current.innerHTML = '';
+      setSmsCode(randomCode)
+    }else{
+      msgFormRef.current.innerHTML = 'شماره همراه معتبر نیست..';
+    }
+  }
+
+  const verifyHandler = () => {
+    if(verifyInput == smsCode){
+      console.log("Taeeeeeeed");
+      msgValidRef.current.innerHTML = "این بخش فعلا غیرفعال است.."
+
+    }else{
+      console.log('wring code');
+      msgValidRef.current.innerHTML = "کد تایید نادرست است.."
+    }
+  }
+
+  function generate(n) {
+    var add = 1, max = 12 - add;   // 12 is the min safe number Math.random() can generate without it starting to pad the end with zeros.  
+    if (n > max) {
+      return generate(max) + generate(n - max);
+    }
+    max = Math.pow(10, n + add);
+    var min = max / 10; // Math.pow(10, n) basically
+    var number = Math.floor(Math.random() * (max - min + 1)) + min;
+    return ("" + number).substring(add);
+  }
+
+  const check_phone = (number) => {
+    var regex = new RegExp("^(\\+98|0)?9\\d{9}$");
+    var result = regex.test(number);
+    return result;
+  };
+
+
+
+
+   const verifyElementForm = (
+      <>
+        <Form.Label>لطفاً برای تکمیل ثبت نام کد ارسال شده را وارد کنید:</Form.Label>
+        <Form.Control type="text" placeholder="این بخش فعلا غیرفعال است.."
+          value={verifyInput}
+          onChange={(e) => setVerifyInput(e.target.value)}
+          ref={phoneRef}
+        />
+          <span ref={msgValidRef} className="msg-form-error"></span>
+        <Button variant="danger" size="sm" className='mt-3 mr-2' type="submit"
+          onClick={verifyHandler}
+        >
+          تایید
+        </Button>
+      </>
+    )
+
+   const phoneElementForm = (
+      <>
+        <Form.Label>شماره موبایل</Form.Label>
+        <Form.Control type="text" placeholder=""
+          value={phoneInput}
+          onChange={(e) => setPhoneInput(e.target.value)}
+          ref={phoneRef}
+        />
+          <span ref={msgFormRef} className="msg-form-error"></span>
+        <Button variant="danger" size="sm" className='mt-3 mr-2' type="submit"
+          onClick={loginHandler}
+        >
+          ورود
+        </Button>
+      </>
+    )
+
+  return (<>
+
+     { smsCode ? verifyElementForm : phoneElementForm }
+  </>
   );
 }
 

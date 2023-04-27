@@ -26,7 +26,7 @@ const Footer = () => {
 
             <div className="col-lg-12 cpright text-white">
 
-                تمامی حقوق برای شرکت محفوظ است © <span itemProp="copyrightYear">2023</span>
+                 کدنویسی توسط علی قاسمی  © <span itemProp="copyrightYear">2023</span>
 
             </div>
         </div>

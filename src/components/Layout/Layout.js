@@ -1,12 +1,17 @@
-import React, { useState } from "react";
-import NavbarUI from "../NavbarSection/NavbarSection";
+import React, { useEffect, useState } from "react";
+
+import NavbarSection from "../NavbarSection/NavbarSection";
 import { CartProvider } from "../../context/cartContext";
 
-
 const Layout = (props) => {
+    let cart = [];
+    useEffect(()=>{
+        console.log("App started..");
+    })
+
     return (
         <CartProvider>
-            <NavbarUI />
+            <NavbarSection />
             {props.children}
         </CartProvider>
     )

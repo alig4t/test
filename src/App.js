@@ -6,6 +6,7 @@ import Main from './pages/Main/Main';
 import Products from './pages/Products/Products'
 import Branches from './pages/Branches/Branches'
 import AboutUs from './pages/AboutUs/AboutUs'
+import Cart from './pages/Cart/Cart';
 
 function App() {
   return (
@@ -16,6 +17,7 @@ function App() {
           <Route path='/products' exact element={<Products />} />
           <Route path='/branches' exact element={<Branches />} />
           <Route path='/about' exact element={<AboutUs />} />
+          <Route path='/cart' exact element={<Cart />} />
         </Routes>
       </Layout>
     </BrowserRouter>

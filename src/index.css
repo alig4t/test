@@ -58,7 +58,7 @@ body {
   direction: rtl;
   /* font-family: IRANSansMonoSpacedNum !important; */
   position: relative;
-  font-family: 'IRANSansMonoSpacedNum', Tahoma;
+  font-family: 'IRANSans-web';
   font-weight: normal;
 }
 
@@ -257,15 +257,16 @@ span {
   position: absolute;
   top: 2px;
   right: 2px;
-  width: 19px;
-  height: 19px;
+  width: 21px;
+  height: 21px;
   border-radius: 100%;
   background-color: #5c2d91;
   line-height: 20px;
-  font-size: 10px;
+  font-size: 12px;
   text-align: center;
   z-index: 2;
-  font-weight: 500;
+  font-weight: 600;
+  /* border: 1px solid #c6b2de; */
 }
 
 .sum-basket.active {
