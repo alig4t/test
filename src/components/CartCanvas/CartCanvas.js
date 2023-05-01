@@ -5,6 +5,9 @@ import { CartContext } from '../../context/cartContext';
 import Offcanvas from 'react-bootstrap/Offcanvas';
 import './CartCanvas.css'
 
+import { HiMinusCircle } from 'react-icons/hi';
+import { HiPlusCircle } from 'react-icons/hi';
+
 const CartCanvas = (props) => {
 
 
@@ -49,14 +52,14 @@ const CartCanvas = (props) => {
       <li key={index}>
         <p className="h5">{item.title}</p>
         <div className="d-flex justify-content-between pt-2 font-sm">
-          <p className="my-0"> {(item.price * (100 - item.offPercent)) / 100} تومان</p>
+          <p className="my-0 pt-1"> {(item.price * (100 - item.offPercent)) / 100} تومان</p>
           <div className="quantity-box d-flex justify-content-between">
-            <span className="material-icons qty-control" onClick={() => plusProduct(item, index)}>
-              add_circle
+            <span className="qty-control" onClick={() => plusProduct(item, index)}>
+              <HiPlusCircle />
             </span>
             <span className="qty-current">{item.qty}</span>
-            <span className="material-icons qty-control" onClick={() => minesProduct(item, index)}>
-              do_not_disturb_on
+            <span className="qty-control" onClick={() => minesProduct(item, index)}>
+              <HiMinusCircle/>
             </span>
           </div>
         </div>

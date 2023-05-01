@@ -2,9 +2,14 @@ import React, { useContext, useEffect, useState } from 'react';
 import { CartContext } from '../../context/cartContext';
 import ModalUI from '../UI/Modal/ModalUI';
 import PlaceHolderUI from '../UI/PlaceHolderUI/PlaceHolderUI';
+import { TbSquareRoundedPlusFilled } from 'react-icons/tb';
 import './ProductCards.css'
 
+import AddToCart from '../UI/Animate/AddToCart/AddToCart';
+
 const ProductCards = (props) => {
+
+    const [animate,setAnimate] = useState(false);
 
     /*********************  Cart Data  *********************/
     const [cartItems, setCartItems] = useContext(CartContext)
@@ -46,6 +51,7 @@ const ProductCards = (props) => {
                 return [...prevState, { ...item, qty: 1 }]
             })
         }
+        setAnimate(true);
     }
 
 
@@ -87,15 +93,17 @@ const ProductCards = (props) => {
                 <div className="col-md-3 col-6 p-3">
                     <span id={item.slug}></span>
                     <div className="card shadow custom-card">
-                        <img className="card-img-top" src={`./assets/img/products/${item.imgPath}`}
+                        <img className="card-img-top position-relative" src={`./assets/img/products/${item.imgPath}`}
                             alt="Card image cap" onClick={() => productModalHandler(item)} />
+                            <AddToCart img={`./assets/img/products/${item.imgPath}`} />
                         <div className="card-body text-center">
                             <h5 className="card-title">{item.title}</h5>
+                            
                             <p className="card-text mb-0"><span>{(item.price * (100 - item.offPercent)) / 100}</span> تومان</p>
                             {item.offPercent > 0 ? <p className="card-text"><span><del>{item.price}</del></span></p> : <p className="card-text"></p>}
                             <a onClick={() => addToBasket(item)}>
                                 <span className="material-icons add-basket-icon">
-                                    add_circle
+                                    <TbSquareRoundedPlusFilled />
                                 </span>
                             </a>
                         </div>

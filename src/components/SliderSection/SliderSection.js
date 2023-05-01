@@ -1,27 +1,38 @@
-import {Carousel} from 'react-bootstrap';
-import img1 from './img/12d47-HDC28078-2.jpg';
-import img2 from './img/7d7a1-HDC11548-2.jpg';
+import { Carousel } from 'react-bootstrap';
 
+import img3 from './img/delicious-italian-pizza-wooden-table.jpg'
+import img18 from './img/wp11989806-chicken-pizza-wallpapers.jpg'
+
+import img13 from './img/wc1813161-pizza-wallpapers.jpg'
+import img10 from './img/top-view-pepperoni-pizza-with-mushroom.jpg'
+
+import img15 from './img/wp10732078-pizza-and-wine-wallpapers.jpg'
+import img30 from './img/wp8620196-cheese-pizza-wallpapers.jpg'
+
+
+
+//3 10 13 15 17 20 27 30
 const SliderSection = () => {
-   return(
+  return (
     <Carousel indicators={false}>
-    <Carousel.Item interval={3000}>
-      <img
-        className="d-block w-100"
-        src={img2}
-      />
 
-    </Carousel.Item>
-    <Carousel.Item interval={3000}>
-      <img
-        className="d-block w-100"
-        src={img1}   
-      />
+      <Carousel.Item interval={3000}>
+        <img
+          className="d-block w-100"
+          src={img15}
+        />
+      </Carousel.Item>
 
-    </Carousel.Item>
+      <Carousel.Item interval={3000}>
+        <img
+          className="d-block w-100"
+          src={img30}
+        />
+      </Carousel.Item>
 
-  </Carousel>
-   )
+
+    </Carousel>
+  )
 }
 
 export default SliderSection

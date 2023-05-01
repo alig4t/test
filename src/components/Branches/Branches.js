@@ -6,134 +6,43 @@ import "./Branches.css"
 
 const Branches = () => {
 
+
+    /*********************  Branch Lists   *********************/
     const branches = [
-        {state:'میرداماد',address:'',img:{img1}},
-        {state:'گیشا',address:'',img:{img1}},
-        {state:'سعادت آباد',address:'',img:{img1}},
-        {state:'آجودانیه',address:'',img:{img1}},
-        {state:'الهیه',address:'',img:{img1}},
-        {state:'پونک',address:'',img:{img1}},
+        { state: 'میرداماد', address: '', img: { img1 } },
+        { state: 'گیشا', address: '', img: { img2 } },
+        { state: 'سعادت آباد', address: '', img: { img3 } },
+        { state: 'آجودانیه', address: '', img: { img4 } },
+        { state: 'الهیه', address: '', img: { img2 } },
+        { state: 'پونک', address: '', img: { img1 } },
     ]
+    
+
+    /*********************  Branch Elements   *********************/
+    const BranchElements = branches.map((item,index) => {
+        let imgNum =  Object.keys(item.img)[0];
+        return (
+            <li className="media col-md-6" key={index}>
+                <div className="media-right">
+                    <img className="media-object" src={item.img[imgNum]} alt="branch" />
+                </div>
+                <div className="media-body media-middle">
+                    <h4 className="media-heading bold ">{item.state}</h4>
+                    <p><span className="green-text">آدرس : </span>لورم ایپسوم متن ساختگی با تولید سادگی نامفهوم از صنعت ...</p>
+                </div>
+            </li>
+        )
+    })
 
     return (
         <div className="container">
-            <div class="row">
-                <div class="col-lg-10 mx-auto">
-                    <div class="all-branches ">
-                        <ul class="branches clearfix">
-                            <li class="media col-md-6">
-                                <div class="media-right">
-                                    
-                                        <img class="media-object" src={img1} alt="branch" />
-                                    
-                                </div>
-                                <div class="media-body media-middle">
-                                    <h4 class="media-heading bold ">میرداماد</h4>
-                                    <p><span class="green-text">آدرس : </span>لورم ایپسوم متن ساختگی با تولید سادگی نامفهوم از صنعت ...</p>
-                                </div>
-                            </li>
-                            <li class="media col-md-6">
-                                <div class="media-right">
-                                  
-                                        <img class="media-object" src={img2} alt="branch" />
-                                    
-                                </div>
-                                <div class="media-body media-middle">
-                                    <h4 class="media-heading bold ">گیشا</h4>
-                                    <p><span class="green-text">آدرس : </span>لورم ایپسوم متن ساختگی با تولید سادگی نامفهوم از صنعت ...</p>
-                                </div>
-                            </li>
-                            <li class="media col-md-6">
-                                <div class="media-right">
-                                    
-                                        <img class="media-object" src={img3} alt="branch" />
-                                    
-                                </div>
-                                <div class="media-body media-middle">
-                                    <h4 class="media-heading bold ">سعادت آباد</h4>
-                                    <p><span class="green-text">آدرس : </span>لورم ایپسوم متن ساختگی با تولید سادگی نامفهوم از صنعت ....</p>
-                                </div>
-                            </li>
-                            <li class="media col-md-6">
-                                <div class="media-right">
-                                    
-                                        <img class="media-object" src={img4} alt="branch" />
-                                    
-                                </div>
-                                <div class="media-body media-middle">
-                                    <h4 class="media-heading bold ">یوسف آباد</h4>
-                                    <p><span class="green-text">آدرس : </span>لورم ایپسوم متن ساختگی با تولید سادگی نامفهوم از صنعت ...</p>
-                                </div>
-                            </li>
-                            <li class="media col-md-6">
-                                <div class="media-right">
-                                    
-                                        <img class="media-object" src={img2} alt="branch" />
-                                    
-                                </div>
-                                <div class="media-body media-middle">
-                                    <h4 class="media-heading bold ">سردار جنگل</h4>
-                                    <p><span class="green-text">آدرس : </span>لورم ایپسوم متن ساختگی با تولید سادگی نامفهوم از صنعت ...</p>
-                                </div>
-                            </li>
-                            <li class="media col-md-6">
-                                <div class="media-right">
-                                    
-                                        <img class="media-object" src={img1} alt="branch" />
-                                    
-                                </div>
-                                <div class="media-body media-middle">
-                                    <h4 class="media-heading bold ">آجودانیه</h4>
-                                    <p><span class="green-text">آدرس : </span>لورم ایپسوم متن ساختگی با تولید سادگی نامفهوم از صنعت ...</p>
-                                </div>
-                            </li>
-                            <li class="media col-md-6">
-                                <div class="media-right">
-                                    
-                                        <img class="media-object" src={img4} alt="branch" />
-                                    
-                                </div>
-                                <div class="media-body media-middle">
-                                    <h4 class="media-heading bold ">الهیه</h4>
-                                    <p><span class="green-text">آدرس : </span>لورم ایپسوم متن ساختگی با تولید سادگی نامفهوم از صنعت ...</p>
-                                </div>
-                            </li>
-                            <li class="media col-md-6">
-                                <div class="media-right">
-                                    
-                                        <img class="media-object" src={img3} alt="branch" />
-                                    
-                                </div>
-                                <div class="media-body media-middle">
-                                    <h4 class="media-heading bold ">بام لند</h4>
-                                    <p><span class="green-text">آدرس : </span>لورم ایپسوم متن ساختگی با تولید سادگی نامفهوم از صنعت ....</p>
-                                </div>
-                            </li>
-                            <li class="media col-md-6">
-                                <div class="media-right">
-                                    
-                                        <img class="media-object" src={img1} alt="branch" />
-                                    
-                                </div>
-                                <div class="media-body media-middle">
-                                    <h4 class="media-heading bold ">کوروش</h4>
-                                    <p><span class="green-text">آدرس : </span>لورم ایپسوم متن ساختگی با تولید سادگی نامفهوم از صنعت ...</p>
-                                </div>
-                            </li>
-                            <li class="media col-md-6">
-                                <div class="media-right">
-                                    
-                                        <img class="media-object" src={img2} alt="branch" />
-                                    
-                                </div>
-                                <div class="media-body media-middle">
-                                    <h4 class="media-heading bold ">نمایشگاه</h4>
-                                    <p><span class="green-text">آدرس : </span>لورم ایپسوم متن ساختگی با تولید سادگی نامفهوم از صنعت ...</p>
-                                </div>
-                            </li>
-                            
+            <div className="row">
+                <div className="col-lg-10 mx-auto">
+                    <div className="all-branches ">
+                        <ul className="branches clearfix">
+                                {BranchElements}
                         </ul>
-                        <div class="clearfix"></div>
+                        <div className="clearfix"></div>
                     </div>
                 </div>
             </div>

@@ -16,7 +16,6 @@ const Order = () => {
     const [cartFactor, setCartFactor] = useState({ "sum": 0, "discount": 0, "tax": 0, "finalPrice": 0 });
     const [userAddresses, setUserAddresses] = useState([])
     const [modalAddress, setModalAddress] = useState(false)
-
     
     /*********************  Calculate Factor using Cart Context  *********************/
     useEffect(() => {

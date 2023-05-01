@@ -1,4 +1,4 @@
-import React, { useState, useContext, useEffect } from 'react';
+import React, { useState, useContext, useEffect, useRef } from 'react';
 import { Link } from 'react-router-dom';
 import { CartContext } from '../../context/cartContext';
 
@@ -12,8 +12,11 @@ import CartCanvas from '../CartCanvas/CartCanvas';
 import ModalUI from '../UI/Modal/ModalUI';
 import './NavbarSection.css'
 
+import { BsBasketFill } from 'react-icons/bs';
+
 
 const NavbarSection = (props) => {
+
 
   /*********************  Basket Context  *********************/
   const [cartItems, setCartItems] = useContext(CartContext)
@@ -21,6 +24,14 @@ const NavbarSection = (props) => {
   for (let item of cartItems) {
     qtyAll += item.qty
   }
+
+  /********************* NavBar Custom *********************/
+  const expand = "lg";   // Nav expand responsive size
+  const [showNavbarCanvas, setShowNavbarCanvas] = useState(false);
+  const openNavCanvas = () => { setShowNavbarCanvas(true) }
+  const closeNavCanvas = () => { setShowNavbarCanvas(false) }
+
+
 
   useEffect(() => {
     console.log("NavBar..");
@@ -30,6 +41,9 @@ const NavbarSection = (props) => {
   const [showModalLoginForm, setShowModalLoginForm] = useState(props.modalLogin)
   const openLoginForm = (e) => {
     e.preventDefault();
+    if (showNavbarCanvas) {
+      closeNavCanvas()
+    }
     setShowModalLoginForm(true);
   }
 
@@ -53,8 +67,7 @@ const NavbarSection = (props) => {
   const handleShowCart = () => setShowCart(true);    //  Open Cart Modal
 
 
-  /********************* NavBar Custom *********************/
-  const expand = "lg";   // Nav expand responsive size
+
 
   return (
     <>
@@ -63,13 +76,13 @@ const NavbarSection = (props) => {
         <Container fluid>
           <Link to="/" className="brand-custom navbar-brand">فست فود اینترنتی</Link>
           <div className='d-flex'>
-            <Navbar.Toggle aria-controls={`offcanvasNavbar-expand-${expand}`} className="bar-icon-container" />
+            <Navbar.Toggle onClick={openNavCanvas} aria-controls={`offcanvasNavbar-expand-${expand}`} className="bar-icon-container" />
 
             <Button className="d-block d-lg-none btn basket-container border-0 bg-none py-0"
               type="button" onClick={handleShowCart} style={{ marginLeft: '6px' }}>
               <span className={`sum-basket text-white ${basketActiveClass ? 'active' : ''}`}>{qtyAll}</span>
               <span className="material-icons basket-icon">
-                shopping_cart
+                <BsBasketFill />
               </span>
             </Button>
 
@@ -80,32 +93,40 @@ const NavbarSection = (props) => {
             id={`offcanvasNavbar-expand-${expand}`}
             aria-labelledby={`offcanvasNavbarLabel-expand-${expand}`}
             placement="end"
+            show={showNavbarCanvas}
+            onHide={closeNavCanvas}
           >
-
-
-            <Offcanvas.Header closeButton>
-              <Offcanvas.Title id={`offcanvasNavbarLabel-expand-${expand}`}>
-                Offcanvas
+            <Offcanvas.Header closeButton style={{borderBottom : "1px solid #e8e8e8"}}>
+              <Offcanvas.Title id={`offcanvasNavbarLabel-expand-${expand}`} style={{fontWeight:"bold"}}>
+                فست فود اینترنتی
               </Offcanvas.Title>
             </Offcanvas.Header>
             <Offcanvas.Body>
               <Nav className="justify-content-end flex-grow-1 pe-3">
 
-                <Link className="nav-link" to="/Products">سفارش اینترنتی غذا</Link>
-                <Link className="nav-link" to="/branches">شعبه ها</Link>
-                <Link className="nav-link" to="/about">درباره ما</Link>
+                <Link className="nav-link" to="/Products" onClick={closeNavCanvas}>سفارش اینترنتی غذا</Link>
+                <Link className="nav-link" to="/branches" onClick={closeNavCanvas}>شعبه ها</Link>
+                <Link className="nav-link" to="/about" onClick={closeNavCanvas}>درباره ما</Link>
                 <a className="nav-link" onClick={(e) => openLoginForm(e)} style={{ cursor: 'pointer' }}>ورود</a>
+
+                  <div className='d-block d-lg-none text-center mt-5'>
+                 <span className='btn-call'>تماس با پشتیبانی:  9999-021</span>
+                    <div className='clearfix'></div>
+                 <span className='d-block version-type'>نسخه 1.0.5</span>
+
+                  </div>
 
                 <Button className="d-none d-lg-block btn basket-container border-0 bg-none py-0"
                   onClick={handleShowCart} style={{ marginLeft: '6px' }}>
                   <span className={`sum-basket text-white ${basketActiveClass ? 'active' : ''}`}>{qtyAll}</span>
                   <span className="material-icons basket-icon">
-                    shopping_cart
+                    <BsBasketFill />
                   </span>
                 </Button>
               </Nav>
             </Offcanvas.Body>
           </Navbar.Offcanvas>
+
         </Container>
       </Navbar>
 
